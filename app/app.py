@@ -127,9 +127,9 @@ with single_tab:
         fuel_type = st.selectbox("Fuel Type", fuel_options)
 
     with col2:
-        distance_min = int(max(0, train_df["Distance "].min(skipna=True)))
-        distance_max = int(train_df["Distance "].max(skipna=True))
-        distance_default = int(train_df["Distance "].median(skipna=True))
+        distance_min = int(max(0, train_df["Distance"].min(skipna=True)))
+        distance_max = int(train_df["Distance"].max(skipna=True))
+        distance_default = int(train_df["Distance"].median(skipna=True))
         distance = st.slider(
             "Distance driven (km)",
             min_value=distance_min,
@@ -195,7 +195,7 @@ with single_tab:
             "Maker": [maker],
             "model": [model_name],
             "Location": [location],
-            "Distance ": [distance],
+            "Distance": [distance],
             "Owner Type": [owner_type],
             "manufacture_year": [manufacture_year],
             "Age of car": [age],
@@ -279,13 +279,13 @@ with insights_tab:
     st.write("Median price by car age")
     st.line_chart(age_price.set_index("Age of car"))
 
-    distance_bins = pd.cut(train_df["Distance "], bins=10)
+    distance_bins = pd.cut(train_df["Distance"], bins=10)
     distance_price = (
         train_df.groupby(distance_bins, observed=True)["Price"]
         .median()
         .reset_index()
     )
-    distance_price["Distance Range"] = distance_price["Distance "].astype(str)
+    distance_price["Distance Range"] = distance_price["Distance"].astype(str)
     st.write("Median price by distance range")
     st.bar_chart(distance_price.set_index("Distance Range")["Price"])
 
