@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+app/app_backup.py
+models/car_price_model.pkl
+*.log
+.env
+ngrok.yml
