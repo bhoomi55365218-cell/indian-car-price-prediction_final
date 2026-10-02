@@ -19,7 +19,7 @@ FEATURES = [
     "Maker",
     "model",
     "Location",
-    "Distance ",
+    "Distance",
     "Owner Type",
     "manufacture_year",
     "Age of car",
@@ -49,10 +49,7 @@ NUMERICAL = [c for c in FEATURES if c not in CATEGORICAL]
 def normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
     """Make common column-name variations match the training schema."""
     df = df.copy()
-    rename_map = {}
-    if "Distance" in df.columns and "Distance " not in df.columns:
-        rename_map["Distance"] = "Distance "
-    df.rename(columns=rename_map, inplace=True)
+    df.columns = df.columns.str.strip()
     return df
 
 
